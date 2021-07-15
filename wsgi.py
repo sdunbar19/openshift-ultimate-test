@@ -26,10 +26,10 @@ from flask_session import Session
 # Note we are using sessions instead of globals
 # This makes our code thread and process safe 
 # (every thread and process will use the same variables and won't interfere)
-app = Flask(__name__)
+application = Flask(__name__)
 SESSION_TYPE = 'filesystem'
-app.config.from_object(__name__)
-Session(app)
+application.config.from_object(__name__)
+Session(application)
 
 
 ## Globals
@@ -122,4 +122,4 @@ def tableChosen():
 
 # Note that we run on '0.0.0.0' to bypass restrictions
 if __name__ == '__main__':
-	app.run(debug=True, threaded=True)
+	application.run(debug=True, threaded=True)
