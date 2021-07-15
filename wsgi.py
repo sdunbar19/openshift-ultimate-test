@@ -39,7 +39,7 @@ dbTbls, accInstr, columnsDict = createDictionaries()
 
 ## Webpage functions
 # Code for the landing page of the website, containing choice of database
-@app.route('/')
+@application.route('/')
 def landing():
 	session['database'] = 'Unknown'
 	session['server'] = 'Unknown'
@@ -51,12 +51,12 @@ def landing():
 	return render_template('landing.html', accInstr=accInstr, dbTbls=dbTbls)
 
 # Code for help pdf link
-@app.route('/show/help-pdf/')
+@application.route('/show/help-pdf/')
 def show_help_pdf():
     return send_file('static/help.pdf', attachment_filename='help.pdf')
 
 # Code for the table production
-@app.route('/loading/<table>', methods=['GET'])
+@application.route('/loading/<table>', methods=['GET'])
 def selectedServer(table):
 	
 	global accInstr
@@ -69,7 +69,7 @@ def selectedServer(table):
 	return render_template('loadingPage.html', accInstr=accInstr, dbTbls=dbTbls)
 
 # Code for the loading resolution (tables and searchbar)
-@app.route('/results', methods=['GET']) 
+@application.route('/results', methods=['GET']) 
 def loadPage():
 
 	# Find tuple of (date, table) for all valid tables
@@ -88,7 +88,7 @@ def loadPage():
 # Code for the portion of the website dealing with the chosen table
 # If the table is valid, it prints the last date the table was modified
 # Otherwise, it prints an error message 'Invalid table'
-@app.route('/tableChosen', methods = ['POST', 'GET'])
+@application.route('/tableChosen', methods = ['POST', 'GET'])
 def tableChosen():
 	if request.method == 'POST':
 
