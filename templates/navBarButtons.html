@@ -3,12 +3,12 @@ Script name: navBarButtons.html
 Description: Loads the navBar as buttons
 Script author: Sarah Dunbar
 Date created: 6/25/21
-Last modified: 6/25/21
+Last modified: 7/02/21
  -->
-{% for database, serverDict in dbTbls.items() %}
-        {% for server, valsList in serverDict.items() %}
+{% for database, serverDict in infoDict.items() %}
+        {% for tup in serverDict.items()|sort() %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('selectedServer', table=server) }}">{{server}}</a>
+                <a class="nav-link" href="{{ url_for('selectedServer', database=database, server=tup[0], refresh='False') }}">{{tup[0]}}</a>
             </li>
        {% endfor %}
      {% endfor %}

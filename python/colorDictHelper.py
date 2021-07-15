@@ -1,4 +1,4 @@
-def makeColorDict():
+def makeColorDict(columns, finalTuples, irregTimesDict):
     colorDict = {}
     colorDict["Emma"] = "redrow"
     colorDict["Nancy"] = "normrow"

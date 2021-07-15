@@ -1,0 +1,22 @@
+<!-- 
+Script name: refreshLoadingPage.html
+Description: Loading page for when user clicks 'refresh all'. 
+Script author: Sarah Dunbar
+Date created: 7/06/21
+Last modified: 7/06/21
+ -->
+ <!doctype html>
+ <html>
+    <head>
+    <meta http-equiv="refresh" content="0; URL={{ url_for('refreshAllResults') }}" />
+  </head>
+  <body>
+    {% include 'navBarCode.html' %}
+    </body>
+  <body>
+    <div class="loader-div"> 
+        <p class="load-text">We are refreshing the data, please be patient! Do not refresh the page. </p>
+        <div class="loader"></div>
+    </div>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 CSS file for stylings
 Written by Sarah Dunbar
 Created 6/23
-Last modified 6/29
+Last modified 6/30
 ######################################################## */
 
 /* GENERAL STYLE */
@@ -10,23 +10,14 @@ body {
     font-family: Helvetica;
   }
 
+/* ------------------------------------------------------------------------------- */
+
 /* NAV STYLES */
-/* Change color of hovered option */
-ul.dropdown-menu>li>a:hover{
-    background-color: #609ece !important;
-    color: #e8eff7 !important;
-    transition-duration: .2s !important;
-  }
 
 /* Color of navbar */
 nav.navbar {
     background-color: #609ece;
     border: none;
-}
-
-/* Controls color of dropdown text */
-li.dropdown>a {
-    color: #609ece
 }
 
 /* Controls color of option when not selected */
@@ -52,6 +43,13 @@ li.dropdown>a {
 .dropdown .dropdown-menu a {
     color: #609ece !important;
 }
+
+/* Change color of hovered option */
+ul.dropdown-menu>li>a:hover{
+    background-color: #609ece !important;
+    color: #e8eff7 !important;
+    transition-duration: .2s !important;
+  }
 
 /* Collapse icon (three bars) stylings */
 /* Bars color */
@@ -138,6 +136,31 @@ li.dropdown>a {
     float: right;
 }
 
+/* div for button to refresh all tables */
+.refresh {
+    width: 150px;
+    height: 50px;
+    float: right;
+    padding: 0px;
+    margin-right: 10px;	
+}
+
+/* styling for button to refresh all tables */
+.refreshall-bttn {
+    font-size: 18px;
+    width: 100%;
+    background-color: #609ece;
+    color: #e8eff7;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+}
+
+.refreshall-bttn:hover {
+    background-color: #18497f;
+    transition-duration: .2s;
+}
+
 /* Help box settings */
 .help {
     width: 100px;
@@ -157,6 +180,7 @@ li.dropdown>a {
 /* Stylings when hovered or active */
 .helplink:hover {
     color:#18497f;
+    transition-duration: .2s;
 }
 
 .helplink:active {
@@ -181,7 +205,7 @@ li.dropdown>a {
 .container-table {
     width: 620px;
     padding-bottom: 50px;
-    margin-left: 50px;
+    margin-left: 25px;
 }
 
 .tab-contain {
@@ -248,6 +272,11 @@ p.dbName {
 /* Text styling to make the text squish */
 p.dbNameTop {
     padding-top: 10px;
+    padding-bottom: 3px;
+}
+
+p.dbNameMiddle {
+    padding-top: 3px;
     padding-bottom: 3px;
 }
 
@@ -319,22 +348,18 @@ form.refresh-bttn {
 
 /* ------------------------------------------------------------------------------- */
 
-/* SEARCHBAR */
+/* SEARCHBAR STYLES */
 /* Style the input and searchbar */
 /* Padding */
 
 /* Container search width/height */
 .container-search {
-    width: 450px;
+    width: 425px;
     height: 600px;
 }
 
 /* Float them right for good margins */
 .ui-widget {
-    float: right;
-}
-
-.results {
     float: right;
 }
 
@@ -358,7 +383,7 @@ input:focus {
 
 /* ------------------------------------------------------------------------------- */
 
-/* SCROLLBAR */
+/* SCROLLBAR STYLES */
 /* Style the bar */
 ::-webkit-scrollbar {
     width: 12px;
@@ -382,7 +407,7 @@ input:focus {
 
 /* ------------------------------------------------------------------------------- */
 
-/* BUTTON */
+/* BUTTON STYLES */
 /* Style the buttons! */
 .button-style {
 
@@ -414,7 +439,7 @@ input.button-style {
 
 /* ------------------------------------------------------------------------------- */
 
-/* RESULTS */
+/* RESULT STYLES */
 /* Style the output */
 .results {
     background-color: #609ece;
@@ -422,6 +447,7 @@ input.button-style {
     border-radius: 10px;
     box-shadow: 0 0 6px rgba(102, 175, 233, 0.6); 
     width: 370px;
+    float: right;
 }
 
 /* You can change hover with this but it's kind of ugly */
@@ -458,12 +484,11 @@ input.button-style {
 /* Label containers */
 .col-md-3 {
     width:185px;
-    border: 1px white;
 }
 
 /* ------------------------------------------------------------------------------- */
 
-/* ANIMATION LOADER */
+/* ANIMATION LOADER STYLES */
 .loader {
     border: 7px solid #e8eff7;
     border-radius: 10%; /* 50% for circle */
@@ -503,7 +528,7 @@ input.button-style {
 
 /* ------------------------------------------------------------------------------- */
 
-/* WELCOME PAGE */
+/* WELCOME PAGE STYLES */
 /* Stylings for the welcome page you are greeted by */
 
 /* Welcome box style */

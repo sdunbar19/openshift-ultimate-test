@@ -3,13 +3,13 @@ Script name: navBarDropdown.html
 Description: Loads the navBar as dropdowns
 Script author: Sarah Dunbar
 Date created: 6/25/21
-Last modified: 6/25/21
+Last modified: 7/02/21
  -->
-{% for database, serverDict in dbTbls.items() %}
+{% for database, serverDict in infoDict.items() %}
        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ database }} <span class="caret"></span></a>
          <ul class="dropdown-menu">
            {% for server, valsList in serverDict.items() %}
-                 <li> <a class="dropdown-item" href="{{ url_for('selectedServer', table=server) }}">{{server}}</a> </li>
+                 <li> <a class="dropdown-item" href="{{ url_for('selectedServer', database=database, server=server, refresh='False') }}">{{server}}</a> </li>
            {% endfor %}
          </ul>
        </li>

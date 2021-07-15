@@ -3,7 +3,7 @@ Script name: navBarCode.html
 Description: Code for the header and navigation bar.
 Script author: Sarah Dunbar
 Date created: 6/15/21
-Last modified: 6/26/21
+Last modified: 7/02/21
  -->
  <!DOCTYPE html>
  <html lang="en">
@@ -16,7 +16,7 @@ Last modified: 6/26/21
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='main2.css') }}">
+   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='main.css') }}">
    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
  </head>
  <body>
@@ -30,13 +30,13 @@ Last modified: 6/26/21
     <div class = "col-md-1 desc">
       <div class = "descText"> AppDev Databases Dashboard </div>
       <div class = "row inforow"> 
-        <div class="refresh col-sm-1">
-          <form action = "{{ url_for('selectedServer', table='database') }}" method =GET">
-            <button type = "submit" name = "submit_button" class="refreshall-bttn" >Refresh all</button>
-          </form> 
-        </div>
+	<div class="refresh col-sm-1">
+		<form action = {{ url_for('refreshAll') }} method=GET>
+			<button type = "submit" name = "submit_button" class="refreshall-bttn">Refresh all</button>
+		</form>
+	</div>
         <div class="help col-sm-1"> 
-          <a class="helplink" href="{{ url_for('show_help_pdf') }}" target="_blank">help</a>
+          <a class="helplink" href="{{ url_for('showHelpPdf') }}" target="_blank">help</a>
         </div>
       </div>
     </div>
