@@ -2,12 +2,9 @@
 # Script name          	: index.py
 # Script author		: Sarah Dunbar														#
 # Script creation date 	: 06/14/21
-# Last modified: 	: 06/27/21																#
+# Last modified: 	: 07/14/21																#
 # Script description   	: Runs the website containing the desired information	#
 #################################################################################################
-
-## TODOS
-# TODO: Change query back (need currentdate - 1 not -2)
 
 ## Imports
 import sys
@@ -16,10 +13,11 @@ import numpy
 import datetime
 import time
 
-from dataWrapper import createDictionaries
-from python.maxDateWrapper import findTablesWrapper, tabTupsToDict
+from python.maxDateWrapper import tabTupsToDict
+from python.colorDictHelper import makeColorDict
+from fileLoader import getAllInfoDict, refresh, refreshSpecific
 
-from flask import Flask, session, render_template, request, send_file
+from flask import Flask, session, render_template, request, send_file, redirect
 from flask_session import Session
 
 ## Sessions
@@ -31,59 +29,88 @@ SESSION_TYPE = 'filesystem'
 application.config.from_object(__name__)
 Session(application)
 
-
-## Globals
-# These can be globals because they are constant
-dbTbls, accInstr, columnsDict = createDictionaries()
-
-
 ## Webpage functions
 # Code for the landing page of the website, containing choice of database
 @application.route('/')
 def landing():
+	session['infoDict'] = json.dumps(getAllInfoDict())
 	session['database'] = 'Unknown'
+	session['serverID'] = 'Unknown'
 	session['server'] = 'Unknown'
 	session['table'] = 'Unknown'
-	session['tableTuples'] = 'Unknown'
-	session['ptList'] = 'Unknown'
 	session['columns'] = 'Unknown'
 	session['colorDict'] = 'Unknown'
-	return render_template('landing.html', accInstr=accInstr, dbTbls=dbTbls)
+	session['refreshTab'] = 'False'
+	session['refreshAll'] = 'False'
+
+	return render_template('landing.html', infoDict=json.loads(session['infoDict']))
+
 
 # Code for help pdf link
 @application.route('/show/help-pdf/')
-def show_help_pdf():
-    return send_file('static/help.pdf', attachment_filename='help.pdf')
+def showHelpPdf():
+	return send_file('static/help.pdf', attachment_filename='help.pdf')
+
+# Code for the loading page when 'Refresh all' clicked
+@application.route('/refreshAll/')
+def refreshAll():
+	infoDict = json.loads(session['infoDict'])
+	return render_template('refreshLoadingPage.html', infoDict=infoDict)
+
+# Code for the results page when 'Refresh all' clicked
+@application.route('/refreshResults/')
+def refreshAllResults():
+
+	global accInstr
+	global columnsDict
+
+	refresh()
+	session['infoDict'] = json.dumps(getAllInfoDict())
+
+	return render_template('refreshLanding.html', infoDict=json.loads(session['infoDict']))
 
 # Code for the table production
-@application.route('/loading/<table>', methods=['GET'])
-def selectedServer(table):
-	
-	global accInstr
-	global dbTbls
-	
-	session['server'] = table
-	session['database'] = accInstr[table][0]
+@application.route('/loading/<database>/<server>/<refresh>', methods=['GET'])
+def selectedServer(database, server, refresh):
+
+	infoDict = json.loads(session['infoDict'])
+	possibleLink = infoDict[database][server]
+
+	# If it's a link, don't set anything
+	if type(possibleLink) == str:
+		return render_template('externalRedirect.html', link=possibleLink)
+
+	session['server'] = server
+	session['database'] = database
+	session['refreshTab'] = refresh
 
 	# Directs you to the loading screen until everything is loaded in loadPage()
-	return render_template('loadingPage.html', accInstr=accInstr, dbTbls=dbTbls)
+	return render_template('loadingPage.html', infoDict=infoDict)
+
 
 # Code for the loading resolution (tables and searchbar)
 @application.route('/results', methods=['GET']) 
 def loadPage():
 
+	if session['refreshTab'] == 'True':
+
+		refreshSpecific(session['database'], session['server'])
+		session['infoDict'] = json.dumps(getAllInfoDict())
+		session['refreshTab'] = 'False'
+
+
 	# Find tuple of (date, table) for all valid tables
-    ptList, finalTuples, columns, colorDict = findTablesWrapper(accInstr, dbTbls, session['server'], session['database'], columnsDict)
-    columns = ["Name"] + columns	
+	columns, ptList, finalTuples, schema, sysDate, irregTimesDict = json.loads(session['infoDict'])[session['database']][session['server']]	
+
+	colorDict = makeColorDict(columns, finalTuples, irregTimesDict)
+	session['colorDict'] = json.dumps(colorDict)
 
 	# Serialize
-    session['tableTuples'] = json.dumps(finalTuples)
-    session['ptList'] = json.dumps(ptList)
-    session['columns'] = json.dumps(columns)
-    session['colorDict'] = json.dumps(colorDict)
+	session['columns'] = json.dumps(columns)
 
-    return render_template('serverChosen.html', server=session['server'], database=session['database'], accInstr=accInstr, 
-				dbTbls=dbTbls, ptList=ptList, tabTups=finalTuples, columns=columns, tupLength=len(columns), colorDict=colorDict)
+	return render_template('serverChosen.html', server=session['server'], database=session['database'], infoDict=json.loads(session['infoDict']), 
+			   schema=schema, ptList=ptList, tabTups=finalTuples, columns=columns, tupLength=len(columns), colorDict=colorDict, sysDate=sysDate)
+
 
 # Code for the portion of the website dealing with the chosen table
 # If the table is valid, it prints the last date the table was modified
@@ -93,9 +120,9 @@ def tableChosen():
 	if request.method == 'POST':
 
 		# Get tuples of tables, dates, list of possibleTables
-		tabTups = json.loads(session['tableTuples'])
-		ptList = json.loads(session['ptList'])
-		columns = json.loads(session['columns'])
+		infoDict = json.loads(session['infoDict'])
+		columns, ptList, tabTups, schema, sysDate, irregTimesDict = infoDict[session['database']][session['server']]
+
 		colorDict = json.loads(session['colorDict'])
 
 		# Get dictionary of table names to dates
@@ -114,12 +141,13 @@ def tableChosen():
 		
 		if session['table'] != '':
 		
-			return render_template('tableChosen.html', server=session['server'], database=session['database'], table=session['table'], accInstr=accInstr, 
-			dbTbls=dbTbls, result=result, ptList=ptList, tabTups=tabTups, columns=columns, tupLength=len(columns), colorDict=colorDict)
+			return render_template('tableChosen.html', server=session['server'], database=session['database'], table=session['table'], infoDict=infoDict, 
+				schema=schema, result=result, ptList=ptList, tabTups=tabTups, columns=columns, tupLength=len(columns), colorDict=colorDict, sysDate=sysDate)
 
-		return render_template('serverChosen.html', server=session['server'], database=session['database'], accInstr=accInstr, 
-				dbTbls=dbTbls, ptList=ptList, tabTups=tabTups, columns=columns, tupLength=len(columns), colorDict=colorDict)
+		return render_template('serverChosen.html', server=session['server'], database=session['database'], infoDict=infoDict, 
+				schema=schema, ptList=ptList, tabTups=tabTups, columns=columns, tupLength=len(columns), colorDict=colorDict, sysDate=sysDate)
+
 
 # Note that we run on '0.0.0.0' to bypass restrictions
 if __name__ == '__main__':
-	application.run(debug=True, threaded=True)
+	application.run(host='0.0.0.0', debug=True, threaded=True)
