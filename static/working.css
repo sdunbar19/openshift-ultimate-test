@@ -1,0 +1,196 @@
+/* ########################################################
+CSS file for stylings
+Written by Sarah Dunbar
+Created 6/23
+Last modified 6/23
+######################################################## */
+
+
+/* NAV STYLES */
+/* Change color of hovered option */
+ul.dropdown-menu>li>a:hover{
+    background-color: #609ece;
+    color: #e8eff7
+  }
+
+/* Color of navbar */
+nav.navbar {
+    background-color: #609ece;
+    border: none;
+}
+
+/* Controls color of dropdown text */
+li.dropdown>a {
+    color: #609ece
+}
+
+/* Controls color of option when not selected */
+.navbar-custom .navbar-nav > li > a {
+    color: #e8eff7;
+}
+
+/* Controls color of option when selected/hovered */
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus {
+    background-color: #e8eff7;
+    color: #609ece
+}
+
+/* Controls box shadow */
+.dropdown .dropdown-menu {
+    background-color: #e8eff7;
+    box-shadow: 1px;
+  }
+
+/* Changes text color of dropdown */
+.dropdown .dropdown-menu a {
+    color: #609ece;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* HEADER BAR STYLES */
+/* Header settings */
+#myHeader {
+    height: 100px;
+    background-color: #e8eff7
+}
+
+/* Logo position settings */
+#myHeader div.logo{
+    position:relative;
+    width:200px;
+    height:100px;
+    float:left;
+}
+
+/* Logo text settings */
+#myHeader div.logo span.logoText{
+    position:absolute;
+    bottom:0;
+    left:0;
+    font-weight: bold;
+    font-size: 60px;
+    margin: 0px;
+    color: #609ece;
+}
+
+/* Description position settings */
+#myHeader div.desc{
+    position:relative;
+    width:200px;
+    height:100px;
+    float:right;
+}
+
+/* Description text settings */
+#myHeader div.desc span.descText{
+    position:absolute;
+    bottom:10px;
+    right:0;
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0px;
+    color: #609ece;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* TABLE STYLES */
+/* Max width of table */
+
+.table {
+    width: 525px;
+    color: #18497f;
+    float:right;
+}
+
+/* Max width of table container */
+.container-table {
+    width: 600px;
+    padding-bottom: 5px;
+    height:400px;
+    overflow-y:auto;
+}
+
+/* Max width of cell */
+.cell {
+    width: 50px;
+}
+
+.table td{
+    border: #609ece solid 1px;
+}
+
+.table th{
+    border: #609ece solid 2px !important;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #b8d0e2;
+  }
+
+/* Table header */
+.table-header {
+    width: 525px;
+    float: right;
+    margin: 0px;
+}
+
+form.refresh-bttn {
+    float:right;
+}
+
+p.dbName {
+    width: 250px;
+    margin: -5px;
+    padding: 10px 0px;
+    color: #18497f;
+    font-weight: bold;
+}
+
+div.leftHeader {
+    width: 250px;
+    float: left;
+    background-color: #e8eff7;
+}
+
+div.rightHeader {
+    float: right;
+    margin-right: -13px;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* AUTOCOMPLETE STYLES */
+/* Autocomplete stylings */
+.ui-autocomplete {
+    position: absolute;
+    z-index: 50;
+    min-width: 160px;   
+    padding: 0 0;
+    list-style: none;
+    background-color: #ffffff;
+}
+
+/* Stylings for hovering */
+.ui-state-hover, .ui-state-active {
+    color: #ffffff;
+    background-color: #609ece;
+}
+
+/* Hide acessible text */
+.ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	position: absolute;
+    overflow: none
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* PAGE STYLINGS */
+/* Space between tools */
+.col-xs-1 {
+    width: 50px;
+}

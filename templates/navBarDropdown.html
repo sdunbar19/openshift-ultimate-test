@@ -1,0 +1,16 @@
+<!-- 
+Script name: navBarDropdown.html
+Description: Loads the navBar as dropdowns
+Script author: Sarah Dunbar
+Date created: 6/25/21
+Last modified: 6/25/21
+ -->
+{% for database, serverDict in dbTbls.items() %}
+       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ database }} <span class="caret"></span></a>
+         <ul class="dropdown-menu">
+           {% for server, valsList in serverDict.items() %}
+                 <li> <a class="dropdown-item" href="{{ url_for('selectedServer', table=server) }}">{{server}}</a> </li>
+           {% endfor %}
+         </ul>
+       </li>
+     {% endfor %}

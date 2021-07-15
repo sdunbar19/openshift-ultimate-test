@@ -1,0 +1,14 @@
+<!-- 
+Script name: navBarButtons.html
+Description: Loads the navBar as buttons
+Script author: Sarah Dunbar
+Date created: 6/25/21
+Last modified: 6/25/21
+ -->
+{% for database, serverDict in dbTbls.items() %}
+        {% for server, valsList in serverDict.items() %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('selectedServer', table=server) }}">{{server}}</a>
+            </li>
+       {% endfor %}
+     {% endfor %}

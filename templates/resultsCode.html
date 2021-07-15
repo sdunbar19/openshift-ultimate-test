@@ -1,0 +1,30 @@
+<!-- 
+Script name: resultsCode.html
+Description: Code to display the results of a search for a table.
+Script author: Sarah Dunbar
+Date created: 6/24/21
+Last modified: 6/25/21
+ -->
+<div class="results">
+    <div class="text">
+        {% if result != "Invalid table" %}
+            <p class="header"> Table chosen: {{table}} </p>
+            {% for i in range(1, tupLength) %}
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="caption">
+                            <p> {{ columns[i] }}: </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="values">
+                            <p> {{ result[i - 1] }} </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="header"> Invalid table </p>
+        {% endif %}
+    </div>
+</div>

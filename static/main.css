@@ -1,0 +1,522 @@
+/* ########################################################
+CSS file for stylings
+Written by Sarah Dunbar
+Created 6/23
+Last modified 6/29
+######################################################## */
+
+/* GENERAL STYLE */
+body {
+    font-family: Helvetica;
+  }
+
+/* NAV STYLES */
+/* Change color of hovered option */
+ul.dropdown-menu>li>a:hover{
+    background-color: #609ece !important;
+    color: #e8eff7 !important;
+    transition-duration: .2s !important;
+  }
+
+/* Color of navbar */
+nav.navbar {
+    background-color: #609ece;
+    border: none;
+}
+
+/* Controls color of dropdown text */
+li.dropdown>a {
+    color: #609ece
+}
+
+/* Controls color of option when not selected */
+.navbar-default .navbar-nav > li > a {
+    color: #e8eff7;
+}
+
+/* Controls color of option when selected/hovered */
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    background-color: #e8eff7 !important;
+    color: #609ece !important;
+    transition-duration: .2s;
+}
+
+/* Controls box shadow */
+.dropdown .dropdown-menu {
+    background-color: #e8eff7 !important;
+    box-shadow: 1px !important;
+  }
+
+/* Changes text color of dropdown */
+.dropdown .dropdown-menu a {
+    color: #609ece !important;
+}
+
+/* Collapse icon (three bars) stylings */
+/* Bars color */
+.navbar-default .icon-bar {
+  background:#609ece !important;
+}
+
+/* Hamburger color */
+.navbar-toggle {
+  background:#e8eff7;
+  border: none !important;
+  float: right;
+}
+
+/* Selected hamburger */
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+    background-color: #bbddf7 !important;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(244, 250, 255, 0.6);
+}
+
+/* Border color (removed weird jump) */
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #609ece;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* HEADER BAR STYLES */
+/* Header settings */
+#myHeader {
+    height: 100px;
+    background-color: #e8eff7
+}
+
+/* Logo position settings */
+#myHeader div.logo{
+    width:304px;
+    height:79px;
+    float:left;
+    padding-top: 20px;
+}
+
+#myHeader .logo-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* DEPRECATED
+#myHeader div.logo span.logoText{
+    bottom:0;
+    left:0;
+    font-weight: bold;
+    font-size: 60px;
+    margin: 0px;
+    color: #609ece;
+}
+*/
+
+/* Description position settings */
+#myHeader div.desc{
+    width:400px;
+    height:75px;
+    float:right;
+    margin-top: 20px;
+}
+
+/* Description text settings */
+#myHeader div.descText{
+    width: 400px;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: -15px;
+    margin-right: auto;
+    color: #609ece;
+    text-align: right;
+    padding-right: 10px;
+}
+
+/* Row of info boxes settings */
+.inforow {
+    width: 400px;
+    float: right;
+}
+
+/* Help box settings */
+.help {
+    width: 100px;
+    height: 50px;
+    float: right;
+    text-align: right;
+}
+
+/* Help link stylings */
+.helplink {
+    font-weight: bold;
+    color: #609ece;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+/* Stylings when hovered or active */
+.helplink:hover {
+    color:#18497f;
+}
+
+.helplink:active {
+    color: #609ece;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* TABLE STYLES */
+/* Max width of table */
+
+.table {
+    color: #18497f;
+    /* Keep borders constant */
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 555px;
+    float: left;
+}
+
+/* Max width of table container */
+.container-table {
+    width: 620px;
+    padding-bottom: 50px;
+    margin-left: 50px;
+}
+
+.tab-contain {
+    width: 600px;
+    float: left;
+}
+
+/* Max width of cell */
+.cell {
+    width: 50px;
+}
+
+/* Table borders */
+.table td{
+    border: #609ece solid 1px;
+}
+
+.table th{
+    border: #609ece solid 1.2px
+}
+
+.table th.big-border {
+    border: #609ece solid 2px !important;
+}
+
+/* Colors of rows */
+.table tr{
+    background: white;
+}
+
+/* Colors of hover */
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #b8d0e2;
+    transition-duration: .2s;
+  }
+
+/* Table header */
+.table-header {
+    width: 555px;
+    float: left;
+    margin: 0px;
+    border: 3px #b8d0e2 solid;
+    border-bottom: none;
+    background-color: #b8d0e2;
+}
+
+/* Database left header stylings */
+div.leftHeader {
+    width: 400px;
+    float: left;
+    background-color: None;
+    background-image: linear-gradient(to left, rgba(255,0,0,0), #e8eff7);
+}
+
+/* Name of database styles */
+p.dbName {
+    width: 250px;
+    margin: -5px;
+    padding-left: 5px;
+    color: #18497f;
+    font-weight: bold
+}
+
+/* Text styling to make the text squish */
+p.dbNameTop {
+    padding-top: 10px;
+    padding-bottom: 3px;
+}
+
+p.dbNameBottom {
+    padding-bottom: 10px;
+    padding-top: 3px;
+}
+
+/* Refresh button stylings */
+div.rightHeader {
+    width: 70px;
+    float: right;
+    margin: 0px;
+    padding: 0px;
+}
+
+form.refresh-bttn {
+    width: 100%;
+}
+
+/* Have table scroll */
+.scroll-restrict {
+    height:400px;
+    overflow-y:auto;
+}
+
+/* Sticky header */
+.scroll-restrict thead th { 
+    position: sticky; 
+    top: 0; 
+    z-index: 1; 
+    background-color: white;
+}
+
+/* If row is flagged as needing to be red */
+.redrow {
+    color: red;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* AUTOCOMPLETE STYLES */
+/* Autocomplete stylings */
+.ui-autocomplete {
+    position: absolute;
+    z-index: 50;
+    min-width: 160px;   
+    padding: 0 0;
+    list-style: none;
+    background-color: #ffffff;
+    color:#18497f;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(244, 250, 255, 0.6);
+}
+
+/* Stylings for hovering */
+.ui-state-hover, .ui-state-active {
+    color: #ffffff;
+    background-color: #609ece;
+}
+
+/* Hide acessible text */
+.ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	position: absolute;
+    overflow: none
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* SEARCHBAR */
+/* Style the input and searchbar */
+/* Padding */
+
+/* Container search width/height */
+.container-search {
+    width: 450px;
+    height: 600px;
+}
+
+/* Float them right for good margins */
+.ui-widget {
+    float: right;
+}
+
+.results {
+    float: right;
+}
+
+/* Searchbar settings */
+.searchbar {
+    width: 293px;
+    margin: 0px;
+}
+
+/* Glow on search */
+input:focus {
+    border-color: #66afe9;
+    box-shadow: 0 1px 1px rgba(102, 175, 233, 0.6) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: 0 none;
+}
+
+/* Text of search label */
+.search-text {
+    color: #18497f;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* SCROLLBAR */
+/* Style the bar */
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #eaf1f7;
+}
+
+/* Pipe style */
+/* Add border radius if you wish to round it */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(2, 17, 31, 0.3);
+    box-shadow: inset 0 0 6px rgba(2, 17, 31, 0.3);
+    /* Rounding */
+}
+
+/* Scrolly style */
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(2, 17, 31, 0.3); 
+    box-shadow: inset 0 0 6px rgba(2, 17, 31, 0.3); 
+    background-color:rgba(102, 175, 233, 0.6); 
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* BUTTON */
+/* Style the buttons! */
+.button-style {
+
+  /* remove default behavior */
+  appearance:none;
+  -webkit-appearance:none;
+
+  /* stylings */
+  padding:5px;
+  border:1px;
+  background-color:#e8eff7;
+  color:#18497f;
+  font-weight:600;
+  border-radius:5px;
+  width:100%;
+}
+
+/* hovering */
+.button-style:hover {
+    background-color:#609ece;
+    color:#e8eff7;
+    transition-duration: .2s;
+}
+
+/* width of input button */
+input.button-style {
+    width: 370px;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* RESULTS */
+/* Style the output */
+.results {
+    background-color: #609ece;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(102, 175, 233, 0.6); 
+    width: 370px;
+}
+
+/* You can change hover with this but it's kind of ugly */
+/*
+.results:hover {
+    background-color: #e8eff7;
+    color: #18497f;
+    transition-duration: .2s;
+}
+*/
+
+/* Make text pretty */
+.text {
+    padding: 10px;
+}
+
+/* Header */
+.header {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Lefthand label */
+.caption {
+    float: left;
+    font-weight: 600;
+}
+
+/* Righthand label */
+.values {
+    float: right;
+}
+
+/* Label containers */
+.col-md-3 {
+    width:185px;
+    border: 1px white;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* ANIMATION LOADER */
+.loader {
+    border: 7px solid #e8eff7;
+    border-radius: 10%; /* 50% for circle */
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-animation: spin 3s linear infinite; /* Safari */
+    animation: spin 3s linear infinite;
+    box-shadow: 0 0 10px rgba(236, 240, 245, 0.3); 
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+/* Place where loader is */
+.loader-div {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    width: 200px;
+}
+
+/* Load text stylings */
+.load-text {
+    text-align: center;
+    color: #609ece;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* WELCOME PAGE */
+/* Stylings for the welcome page you are greeted by */
+
+/* Welcome box style */
+.welcome-div {
+    margin-left: 40px;
+    padding-top: 10px;
+    width: 1000px;
+}
+
+/* Welcome text style */
+.welcome-text {
+    text-align: left;
+    color: #609ece;
+    font-size: 20px;
+    font-style: italic;
+}

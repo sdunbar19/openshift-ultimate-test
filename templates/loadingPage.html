@@ -1,0 +1,22 @@
+<!-- 
+Script name: loadingPage.html
+Description: Loading page website.
+Script author: Sarah Dunbar
+Date created: 6/15/21
+Last modified: 6/25/21
+ -->
+ <!doctype html>
+ <html>
+    <head>
+    <meta http-equiv="refresh" content="0; URL={{ url_for('loadPage') }}" />
+  </head>
+  <body>
+    {% include 'navBarCode.html' %}
+    </body>
+  <body>
+    <div class="loader-div"> 
+        <p class="load-text">We are fetching your data, please be patient! Do not refresh the page. </p>
+        <div class="loader"></div>
+    </div>
+  </body>
+</html>

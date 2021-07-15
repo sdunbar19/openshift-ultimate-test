@@ -1,0 +1,45 @@
+<!-- 
+Script name: tableCode.html
+Description: Code to display the table of the databases and access times.
+Script author: Sarah Dunbar
+Date created: 6/24/21
+Last modified: 6/25/21
+ -->
+<html>
+    <div class="col-md-1 container-table">
+        <div class="row table-header">
+            <div class="col-md-1 leftHeader">
+                <p class="dbName dbNameTop"> Database: {{ server }} </p>
+		        <p class="dbName dbNameMiddle"> Schema: {{accInstr[server][2]}} </p>
+                <p class="dbName dbNameBottom"> Last refreshed: DUMMYT </p>
+            </div>
+            <div class="col-md-1 rightHeader">
+                <form class="refresh-bttn" action = {{ url_for('selectedServer', table=server) }} method =GET">
+                    <button type = "submit" name = "submit_button" value = "{{ server }}" class="button-style" >Refresh</button>
+                </form> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1 tab-contain scroll-restrict">
+                <table class="table table-hover sortable">
+                    <thead>
+                    <tr>
+                            {% for header in columns %}
+                                <th scope="col" class="cell big-border">{{header}}</th>
+                            {% endfor %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tup in tabTups %}
+                    <tr class={{colorDict[tup[0]]}}>
+                    <th scope="row" class="cell"> {{ tup[0] }} </th>
+                            {% for i in range(1, tupLength) %}
+                                    <td class="cell"> {{tup[i]}} </td>
+                            {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table> 
+        </div>  
+        </div> 
+    </div> 
+</html>
