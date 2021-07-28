@@ -1,9 +1,13 @@
-# syntax=docker/dockerfile:1
-
-FROM python:3.8-slim-buster
+from alpine:latest
+RUN apk add --no-cache py3-pip \
+    && pip3 install --upgrade pip
 
 WORKDIR /app
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["python3", "-m", "flask", "run"]
+COPY . /app
+
+RUN pip3 --no-cache-dir install -r requirements.txt
+
+EXPOSE 5000
+
+ENTRYPOINT ["python3"]
+CMD ["wsgi.py"]
